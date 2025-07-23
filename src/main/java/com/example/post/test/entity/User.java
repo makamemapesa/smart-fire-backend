@@ -39,7 +39,4 @@ public class User {
 
     @OneToMany(mappedBy = "reporter")
     private List<Emergency> emergencies;
-
-//    @OneToMany(mappedBy = "dispatcher")
-//    private List<Emergency> emergency;
 }

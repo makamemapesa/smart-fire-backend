@@ -1,6 +1,7 @@
 package com.example.post.test.contoller;
 
 import com.example.post.test.DTOs.DriverDto;
+import com.example.post.test.DTOs.DriverLoginDto;
 import com.example.post.test.entity.Driver;
 import com.example.post.test.service.DriverService;
 import org.modelmapper.ModelMapper;
@@ -23,7 +24,7 @@ public class DriverController {
     @Autowired
     private ModelMapper modelMapper;
 
-
+    @PostMapping
     public ResponseEntity<DriverDto> createDriver(@RequestBody DriverDto dto) {
         Driver driver = modelMapper.map(dto, Driver.class);
         Driver saved = driverService.saveDriver(driver);
@@ -33,7 +34,9 @@ public class DriverController {
     @GetMapping
     public ResponseEntity<List<DriverDto>> getAllDrivers() {
         List<Driver> drivers = driverService.getAllDrivers();
-        List<DriverDto> result = drivers.stream().map(d -> modelMapper.map(d, DriverDto.class)).collect(Collectors.toList());
+        List<DriverDto> result = drivers.stream()
+                .map(d -> modelMapper.map(d, DriverDto.class))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -59,5 +62,31 @@ public class DriverController {
     public ResponseEntity<?> deleteDriver(@PathVariable Long id) {
         driverService.deleteDriver(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("delete")
+    public ResponseEntity<DriverDto> deactivateDriver(@RequestBody DriverDto dto) {
+        Driver driver = modelMapper.map(dto, Driver.class);
+        Driver saved = driverService.saveDriver(driver);
+        return new ResponseEntity<>(modelMapper.map(saved, DriverDto.class), HttpStatus.CREATED);
+    }
+
+    // NEW: Login endpoint
+    @PostMapping("/login")
+    public ResponseEntity<?> loginDriver(@RequestBody DriverLoginDto loginDto) {
+        Optional<Driver> driverOpt = driverService.getDriverByEmail(loginDto.getEmail());
+
+        if (driverOpt.isPresent()) {
+            Driver driver = driverOpt.get();
+            // Simple password check (for production, hash password!)
+            if (driver.getPassword().equals(loginDto.getPassword())) {
+                DriverDto responseDto = modelMapper.map(driver, DriverDto.class);
+                return new ResponseEntity<>(responseDto, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Invalid password", HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            return new ResponseEntity<>("Driver not found", HttpStatus.NOT_FOUND);
+        }
     }
 }

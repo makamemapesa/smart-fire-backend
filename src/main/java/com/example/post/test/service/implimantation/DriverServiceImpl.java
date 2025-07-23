@@ -40,4 +40,9 @@ public class DriverServiceImpl implements DriverService {
         return driverRepository.existsById(id);
     }
 
+    @Override
+    public Optional<Driver> getDriverByEmail(String email) {
+        return driverRepository.findByEmail(email);
+    }
+
 }

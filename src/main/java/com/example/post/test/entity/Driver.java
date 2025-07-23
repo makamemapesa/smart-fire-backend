@@ -10,10 +10,9 @@ import java.util.List;
 @Entity
 @Table(name = "drivers")
 @Data
-public class Driver {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Driver { @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
     @Column(nullable = false)
     private String firstName;
@@ -39,7 +38,7 @@ public class Driver {
     // GPS coordinates
     private Double latitude;
     private Double longitude;
-
+    private String password;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id", nullable = false)
@@ -52,7 +51,6 @@ public class Driver {
             this.status = Status.ACTIVE.toString();
         }
     }
-
 }
 
 

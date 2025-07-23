@@ -8,10 +8,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "emergencies")
 @Data
-public class Emergency {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Emergency { @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
     @Column(nullable = false)
     private String description;
@@ -58,7 +57,6 @@ public class Emergency {
             this.status = "PENDING";
         }
     }
-
 }
 
 

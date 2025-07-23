@@ -11,4 +11,5 @@ public interface DriverService {
     Optional<Driver> getDriverById(Long id);
     void deleteDriver(Long id);
     boolean isExist(Long id);
+    Optional<Driver> getDriverByEmail(String email);
 }

@@ -29,10 +29,12 @@ public class CarController {
 
     @PostMapping
     public ResponseEntity<CarDto> createCar(@RequestBody CarDto dto) {
+        dto.setId(null); // 💡 force creation
         Car car = modelMapper.map(dto, Car.class);
         Car saved = carService.saveCar(car);
         return new ResponseEntity<>(modelMapper.map(saved, CarDto.class), HttpStatus.CREATED);
     }
+
 
     @GetMapping
     public ResponseEntity<List<CarDto>> getAllCars() {

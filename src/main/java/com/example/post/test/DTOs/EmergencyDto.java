@@ -15,7 +15,7 @@ public class EmergencyDto {
     private LocalDateTime reportedAt;
     private LocalDateTime respondedAt;
     private LocalDateTime completedAt;
-
+    private Long reporterId;
     private Long driverId;
 
 }

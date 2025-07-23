@@ -1,4 +1,5 @@
 package com.example.post.test.DTOs;
+import com.example.post.test.entity.Car;
 import lombok.Data;
 
 @Data

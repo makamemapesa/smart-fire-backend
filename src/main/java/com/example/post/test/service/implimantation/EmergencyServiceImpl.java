@@ -4,6 +4,7 @@ import com.example.post.test.entity.Driver;
 import com.example.post.test.entity.Emergency;
 import com.example.post.test.repository.DriverRepository;
 import com.example.post.test.repository.EmergencyRepository;
+import com.example.post.test.repository.UserRepository;
 import com.example.post.test.service.EmergencyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class EmergencyServiceImpl implements EmergencyService {
 
     private final EmergencyRepository emergencyRepository;
+    private UserRepository userRepository ;
     private final DriverRepository driverRepository;
     private final ModelMapper modelMapper;
 
@@ -51,6 +53,8 @@ public class EmergencyServiceImpl implements EmergencyService {
         }
         return emergencyResponseDtoList;
     }
+
+
 
     @Override
     public Optional<Emergency> getEmergencyById(Long id) {

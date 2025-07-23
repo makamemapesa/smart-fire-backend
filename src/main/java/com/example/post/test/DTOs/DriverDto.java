@@ -11,7 +11,5 @@ public class DriverDto {
     private String phoneNumber;
     private String licenseNumber;
     private String status;
-    private Double latitude;
-    private Double longitude;
     private Long carId;
 }

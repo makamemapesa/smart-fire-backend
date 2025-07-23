@@ -3,7 +3,10 @@ package com.example.post.test.contoller;
 import com.example.post.test.DTOs.EmergencyDto;
 import com.example.post.test.DTOs.EmergencyResponseDto;
 import com.example.post.test.entity.Emergency;
+import com.example.post.test.entity.User;
 import com.example.post.test.service.EmergencyService;
+import com.example.post.test.service.UserService;
+import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +17,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+
 @RestController
 @RequestMapping("/emergencies")
+@Data
 public class EmergencyController {
     @Autowired
     private EmergencyService emergencyService;
@@ -30,10 +36,29 @@ public class EmergencyController {
 
     @PostMapping
     public ResponseEntity<EmergencyDto> createEmergency(@RequestBody EmergencyDto dto) {
+        System.out.println("Received emergency: " + dto);
         Emergency emergency = modelMapper.map(dto, Emergency.class);
         Emergency saved = emergencyService.saveEmergency(emergency);
         return new ResponseEntity<>(modelMapper.map(saved, EmergencyDto.class), HttpStatus.CREATED);
     }
+//    @PostMapping("/ema")
+//    public ResponseEntity<EmergencyDto> receiveEmergency(@RequestBody EmergencyDto emerge) {
+//        System.out.println("Received emergency from: " + emerge.getLocationDescription());
+//
+//        Emergency emergency = modelMapper.map(emerge, Emergency.class);
+//
+//        // Set the reporter based on the ID from the DTO
+//        if (emerge.getReporterId() != null) {
+//            User reporter = UserService.findById(emerge.getReporterId()); // Assume you have a userService to fetch the user
+//            emergency.setReporter(reporter);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // or handle it as needed
+//        }
+//
+//        Emergency saved = emergencyService.saveEmergency(emergency);
+//        return new ResponseEntity<>(modelMapper.map(saved, EmergencyDto.class), HttpStatus.CREATED);
+//    }
+
 
     @GetMapping
     public ResponseEntity<List<EmergencyDto>> getAllEmergencies() {
