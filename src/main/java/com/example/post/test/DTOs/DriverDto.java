@@ -9,6 +9,7 @@ public class DriverDto {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String password;
     private String licenseNumber;
     private String status;
     private Long carId;

@@ -44,5 +44,8 @@ public class DriverServiceImpl implements DriverService {
     public Optional<Driver> getDriverByEmail(String email) {
         return driverRepository.findByEmail(email);
     }
-
+    @Override
+    public List<Driver> getAvailableDrivers() {
+        return driverRepository.findByStatusAndAvailable("ACTIVE", true);
+    }
 }

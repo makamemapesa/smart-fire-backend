@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class CarServiceImpl implements CarService {
-
     private final CarRepository carRepository;
 
     public CarServiceImpl(CarRepository carRepository) {
@@ -41,5 +39,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public boolean isExist(Long id) {
         return carRepository.existsById(id);
+    }
+
+    @Override
+    public List<Car> searchCars(String plateNumber) {
+        return carRepository.findByPlateNumberContainingIgnoreCase(plateNumber);
     }
 }

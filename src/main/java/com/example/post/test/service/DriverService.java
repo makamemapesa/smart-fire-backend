@@ -12,4 +12,5 @@ public interface DriverService {
     void deleteDriver(Long id);
     boolean isExist(Long id);
     Optional<Driver> getDriverByEmail(String email);
+    List<Driver> getAvailableDrivers();
 }

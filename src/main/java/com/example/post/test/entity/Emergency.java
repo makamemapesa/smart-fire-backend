@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "emergencies")
 @Data
-public class Emergency { @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+public class Emergency {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String description;
@@ -33,7 +33,7 @@ private Long id;
     private LocalDateTime respondedAt;
     private LocalDateTime completedAt;
 
-    private Long driverId;
+//    private Long driverId;
 
     private Long dispatcher;
 
@@ -46,9 +46,9 @@ private Long id;
 //    @JoinColumn(name = "dispatcher", nullable = false)
 //    private User dispatcher;
 //
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "driver_id", nullable = false)
-//    private Driver driver;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "driver_id", nullable = false)
+    private Driver driver;
 
     @PrePersist
     protected void onCreate() {
@@ -58,8 +58,3 @@ private Long id;
         }
     }
 }
-
-
-
-
-

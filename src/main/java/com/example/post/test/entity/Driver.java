@@ -4,7 +4,7 @@ import com.example.post.test.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+
 
 
 @Entity
@@ -39,10 +39,14 @@ private Long id;
     private Double latitude;
     private Double longitude;
     private String password;
+    @Column(nullable = false)
+    private boolean available;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id", nullable = false)
-    private Car car;
+//    @ManyToOne
+//    private Driver driver;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "car_id", nullable = false)
+//    private Car car;
 
 
     // Constructors
@@ -51,6 +55,9 @@ private Long id;
             this.status = Status.ACTIVE.toString();
         }
     }
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 }
 
 

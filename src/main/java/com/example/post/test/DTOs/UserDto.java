@@ -1,7 +1,6 @@
 package com.example.post.test.DTOs;
 
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -12,7 +11,7 @@ public class UserDto {
     private String lastName;
     private String password;
     private String phoneNumber;
-    private String roles;
+    private String role;
     private String email;
     private String address;
 }

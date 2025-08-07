@@ -11,4 +11,8 @@ public interface CarService {
     Optional<Car> getCarById(Long id);
     void deleteCar(Long id);
     boolean isExist(Long id);
+    List<Car> searchCars(String plateNumber);
+
+
+
 }

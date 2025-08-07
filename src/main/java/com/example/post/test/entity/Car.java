@@ -32,6 +32,8 @@ public class Car {
 
     @OneToMany(mappedBy = "car")
     private List<Driver> drivers;
+
+
 }
 
 
