@@ -163,8 +163,29 @@ public ResponseEntity<EmergencyDto> assignEmergencyToDriver(
 
 }
 
+//    @PostMapping("/panic")
+//    public ResponseEntity<EmergencyDto> handlePanic(@RequestBody EmergencyDto dto) {
+//        User reporter = userService.findByEmail(dto.getReporter().getEmail())
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        Emergency emergency = new Emergency();
+//        emergency.setReporter(reporter);
+//        emergency.setDescription(dto.getDescription());
+//        emergency.setLatitude(dto.getLatitude());
+//        emergency.setLongitude(dto.getLongitude());
+//        emergency.setLocationDescription(dto.getLocationDescription());
+//        emergency.setStatus(dto.getStatus());
+//        emergency.setReportedAt(dto.getReportedAt());
+//
+//        emergencyService.saveEmergency(emergency);
+//        return ResponseEntity.ok().body(modelMapper.map(emergency, EmergencyDto.class));
+//    }
+
     @PostMapping("/panic")
     public ResponseEntity<EmergencyDto> handlePanic(@RequestBody EmergencyDto dto) {
+        // The logic for this is already in your provided EmergencyController.
+        // This is just a placeholder to show where the endpoint should be.
+        // You can adapt your existing `/panic` endpoint if needed.
         User reporter = userService.findByEmail(dto.getReporter().getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

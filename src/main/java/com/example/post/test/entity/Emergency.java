@@ -46,8 +46,8 @@ public class Emergency {
 //    @JoinColumn(name = "dispatcher", nullable = false)
 //    private User dispatcher;
 //
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "driver_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "driver_id", nullable = true)
     private Driver driver;
 
     @PrePersist
